@@ -1,236 +1,229 @@
-Marketing Campaign Performance Analysis
+📊 Marketing Campaign Performance Analysis
 
-An end-to-end data analytics project focused on understanding customer behavior, marketing campaign response, and customer segments to support better marketing decisions.
+«An end-to-end Data Analytics portfolio project combining Python, SQL, Customer Segmentation, and Power BI.»
+
+This project analyzes customer behavior and marketing campaign performance to identify high-value customers, response patterns, purchasing behavior, and actionable marketing opportunities.
 
 The project follows a complete analytics workflow:
 
-Business Problem → Data Preparation → Cleaning → Exploration → SQL Analysis → Customer Segmentation → Power BI Dashboard → Insights → Recommendations
+Business Understanding → Data Preparation → Data Cleaning → Exploratory Analysis → SQL Analysis → Customer Segmentation → Visualization → Business Recommendations
 
 ---
 
-Project Overview
+🎯 Project Overview
 
-Marketing teams collect large amounts of customer and campaign data, but the real challenge is turning that data into useful decisions.
+The main business question is:
 
-In this project, I worked with the Customer Personality Analysis dataset to answer a practical business question:
+«How can a company better understand its customers and marketing campaign performance to make more informed marketing decisions?»
 
-«How can a company understand its customers and marketing campaign performance to make better marketing decisions?»
+The analysis focuses on:
 
-Rather than focusing only on creating charts, I treated the dataset as a real analytics problem — starting with data quality and business questions, then moving through analysis and segmentation before building the final dashboard.
-
-The project was also used as a practical way to apply the concepts covered throughout the Google Data Analytics Professional Certificate, using Python instead of R for the programming and analysis work.
-
----
-
-Business Questions
-
-The analysis focused on questions such as:
-
-- What percentage of customers responded to the latest campaign?
-- Which customer groups are more likely to respond?
-- How does customer value relate to campaign response?
-- Do recent customers respond differently from less-recent customers?
-- Which product categories generate the highest spending?
-- Which purchasing channels are used most by responders?
-- Does customer tenure appear to be associated with campaign response?
-- Can customers be segmented based on their behavior and value?
-- Which segments should marketing teams prioritize?
-
----
-
-Dataset
-
-The project uses the Customer Personality Analysis dataset containing customer demographics, purchasing behavior, campaign responses, and channel activity.
-
-The original dataset contains:
-
-- 2,240 customers
-- 29 variables
-
-Main areas of the dataset include:
-
-- Customer demographics
-- Income and household information
-- Product spending
-- Web, catalog, and store purchases
+- Customer demographics and household characteristics
+- Customer spending behavior
+- Purchasing channels
+- Marketing campaign responses
 - Previous campaign acceptance
-- Current campaign response
-- Customer enrollment date
-
-The dataset was used as a portfolio analysis scenario rather than representing a specific real company.
-
----
-
-Tools & Technologies
-
-Area| Tools
-Data Cleaning & Analysis| Python, Pandas, NumPy
-Statistical / Exploratory Analysis| Pandas, Matplotlib
-Business Analysis| SQL, SQLite
-Customer Segmentation| Scikit-learn, K-Means, StandardScaler
-Dashboard & Visualization| Microsoft Power BI
-Development Environment| Google Colab, Jupyter Notebook
-Version Control| GitHub
+- Customer recency and tenure
+- Customer segmentation
+- Factors associated with campaign responsiveness
 
 ---
 
-Project Workflow
+📌 Business Questions
+
+This project answers questions such as:
+
+1. What percentage of customers responded to the latest campaign?
+2. Which customer groups are more responsive?
+3. How does spending differ between responders and non-responders?
+4. Which purchasing channels are most active among responders?
+5. Which product categories generate the highest spending?
+6. Does customer recency relate to campaign response?
+7. Does customer tenure relate to campaign response?
+8. Can customers be segmented based on their value and purchasing behavior?
+9. Which customer segment should receive greater marketing attention?
+10. What business actions can be recommended from the analysis?
+
+---
+
+📊 Dataset
+
+Dataset: Customer Personality Analysis
+
+The dataset contains customer demographic, purchasing, and marketing campaign information.
+
+Dataset characteristics
+
+Metric| Value
+Original customers| 2,240
+Original columns| 29
+Customers after cleaning| 2,233
+Analytical columns| 33+
+Missing values| Mainly "Income"
+Duplicate records| 0
+
+The dataset is used as a public-data portfolio case study.
+The business scenario presented in this project is fictional and is intended to demonstrate how a Data Analyst could approach a real marketing analytics problem.
+
+---
+
+🛠️ Tools & Technologies
+
+Tool| Purpose
+🐍 Python| Data cleaning, exploration, analysis
+🐼 Pandas| Data manipulation
+🔢 NumPy| Numerical analysis
+🗃️ SQL / SQLite| Business-oriented data analysis
+🤖 Scikit-learn| Customer segmentation
+📊 Power BI| Dashboard and visualization
+📓 Jupyter / Google Colab| Analysis environment
+
+---
+
+🔄 Project Workflow
 
 1. Business Understanding
 
-I started by defining the business problem and identifying the questions that the analysis should answer.
+The project starts by defining the business problem and translating it into measurable analytical questions.
 
-The goal was not simply to describe the dataset, but to understand which customer characteristics and behaviors are associated with campaign response.
+The objective is not simply to describe the dataset, but to understand:
 
----
-
-2. Data Preparation & Quality Checks
-
-Before analyzing the data, I inspected its structure and quality.
-
-The initial dataset contained:
-
-- 2,240 rows
-- 29 columns
-- 24 missing values in "Income"
-- No duplicate records
-
-I also checked categorical values, data types, unique customer IDs, and suspicious values.
+Customer → Behavior → Campaign Response → Segment → Business Action
 
 ---
 
-3. Data Cleaning
+2. Data Preparation
 
-Several data-quality decisions were made during the preparation stage.
+The original dataset was inspected to understand:
+
+- Dataset dimensions
+- Data types
+- Missing values
+- Duplicate records
+- Categorical values
+- Potential data-quality issues
+- Constant columns
+- Suspicious values and outliers
+
+Initial inspection
+
+2,240 customers × 29 columns
+
+Only the "Income" column contained missing values, with 24 missing records.
+
+No duplicate customer records were identified.
+
+---
+
+🧹 3. Data Cleaning
+
+Several data-quality improvements were performed.
 
 Missing Income
 
-Only "Income" contained missing values.
-
-The missing values were handled using median imputation because income contains high-value observations and the median is less sensitive to extreme values than the mean.
+The 24 missing income values were replaced using the median income to avoid losing customer records.
 
 Marital Status
 
-The original marital-status categories were consolidated into two broader groups:
+Marital categories were consolidated into two analytical groups:
 
-- "Partner"
-- "Alone"
+- Partner
+- Alone
 
-Rare invalid categories such as "YOLO" and "Absurd" were removed.
+Invalid/ambiguous categories such as "YOLO" and "Absurd" were removed.
 
 Age
 
-The dataset contained suspicious birth years, including values from the 1800s.
+Age was calculated using the dataset's reference year.
 
-Instead of manually changing those records, I calculated age using the dataset's 2014 reference year and removed observations with an age of 100 or above.
+Suspicious birth-year records producing unrealistic ages were excluded through an age-quality filter.
 
-After cleaning:
+Final analytical age range:
 
-2,233 customers remained.
+18–74 years
 
-Additional Features
+Feature Engineering
 
-I created several analytical features:
+Additional analytical features were created:
 
-- "Age"
 - "Children"
-- "Family_Size"
+- "Age"
 - "Total_Spending"
 - "Total_Purchases"
+- "Family_Size"
 - "Customer_Tenure_Days"
+- "Customer_Segment"
 
-Constant columns that provided no analytical value were also removed from the final analytical dataset.
+Constant columns that provided no analytical value were removed from the analytical dataset.
 
 ---
 
-Exploratory Analysis
+🔎 4. Exploratory Data Analysis
 
-The exploratory analysis was used to understand customer behavior before moving into predictive or segmentation techniques.
+The analysis explored relationships between customer characteristics, spending behavior, purchasing activity, and campaign response.
 
-Some important findings included:
+---
 
-Campaign Response
+📈 Overall Campaign Performance
 
-Out of 2,233 cleaned customers:
+Metric| Result
+Customers analyzed| 2,233
+Responders| 332
+Response Rate| 14.87%
 
-- 332 responded
-- 1,901 did not respond
-- Overall response rate: 14.87%
+The overall campaign response rate was approximately 14.87%.
 
-Spending & Response
+---
 
-Customers who responded to the campaign had considerably higher average spending:
+💰 Spending & Campaign Response
 
-Group| Avg. Spending
+Customer Group| Avg. Total Spending
+Non-Responders| 538.49
 Responders| 988.40
-Non-responders| 538.49
 
-This indicates a strong association between customer spending and campaign response.
+Responders had substantially higher average spending than non-responders.
 
-Recency
-
-Responders had an average recency of approximately:
-
-35.41 days
-
-compared with:
-
-51.54 days
-
-for non-responders.
-
-This suggests that customers with more recent purchasing activity were more responsive.
-
-Product Categories
-
-Responders spent more across every analyzed product category.
-
-The largest absolute differences were observed in:
-
-- Wines
-- Meat Products
-
-These categories therefore became important candidates for targeted marketing analysis.
+«💡 Insight: Customers who responded to the campaign were also associated with considerably higher spending levels.»
 
 ---
 
-SQL Business Analysis
+🛒 Purchasing Behavior
 
-SQL was used to answer business questions directly from the cleaned analytical dataset.
+Customer Group| Avg. Purchases
+Non-Responders| 12.05
+Responders| 15.36
 
-Examples included:
+Responders were more active across the purchasing channels represented in the dataset.
+
+---
+
+🧮 5. SQL Business Analysis
+
+SQL was used to answer business questions directly from the analytical dataset.
+
+The SQL analysis covered:
 
 - Overall campaign response rate
-- Response rate by education
-- Response rate by number of children
-- Spending comparison between responders and non-responders
-- Purchase behavior by response
-- Income comparison
-- Recency comparison
-- Purchasing-channel analysis
+- Response by education
+- Response by number of children
+- Spending by response
+- Purchases by response
+- Income by response
+- Recency by response
+- Channel behavior
 - Previous campaign acceptance
-- Product-category performance
-- Response rate by customer tenure
+- Product-category spending
+- Customer tenure and response
 
-Customer Tenure Analysis
-
-One particularly useful finding was the relationship between customer tenure and campaign response.
-
-Tenure Group| Response Rate
-Less than 6 months| 8.65%
-6–12 months| 9.38%
-1–1.5 years| 16.61%
-More than 1.5 years| 26.48%
-
-Longer-tenure customers showed substantially higher response rates in this dataset.
+This demonstrates how SQL can be used to move from raw customer records to business-focused answers.
 
 ---
 
-Customer Segmentation
+🤖 6. Customer Segmentation
 
-To move beyond simple descriptive analysis, I created behavioral customer segments using K-Means clustering.
+Customer segmentation was performed using K-Means clustering.
 
-The segmentation used:
+The segmentation features were based on:
 
 - Income
 - Recency
@@ -240,201 +233,300 @@ The segmentation used:
 - Catalog Purchases
 - Store Purchases
 
-Importantly, campaign response variables were not used as clustering inputs.
+Important methodological decision
 
-This avoided target leakage and allowed the segments to be evaluated against campaign response afterward.
+Campaign response variables were not used as clustering inputs.
 
-Choosing the Number of Clusters
-
-I compared multiple K-Means configurations using silhouette scores.
-
-The best result was obtained with:
-
-K = 2
-
-with a silhouette score of approximately 0.436.
+This avoided target leakage and ensured that customer segments were created from customer characteristics and behavior rather than from the outcome we were trying to evaluate.
 
 ---
 
-Customer Segments
+📐 Choosing the Number of Clusters
 
-The resulting segments were interpreted based on their behavioral profiles.
+Silhouette scores were evaluated across multiple values of K.
 
-Higher-Value Customers
+K| Silhouette Score
+2| 0.436
+3| 0.311
+4| 0.247
+5| 0.247
+6| 0.247
+7| 0.251
+8| 0.248
 
-1,058 customers — 47.4% of the dataset
-
-Average profile:
-
-- Income: 69,033.82
-- Spending: 1,132.60
-- Purchases: 19.15
-- Campaign response rate: 20.98%
-
-Lower-Value Customers
-
-1,174 customers — 52.6% of the dataset
-
-Average profile:
-
-- Income: 36,530.38
-- Spending: 130.71
-- Purchases: 6.58
-- Campaign response rate: 9.37%
-
-Segment-Level Campaign Response
-
-The higher-value segment represented approximately 47.4% of customers but 66.9% of all campaign responders.
-
-Its response rate was also approximately 2.24× higher than the lower-value segment.
-
-This makes customer value an important factor for campaign prioritization in this dataset.
+Based on the results, K = 2 was selected.
 
 ---
 
-Key Insights
+👥 Customer Segments
 
-1. Higher-value customers are more responsive
+Two practical customer segments were identified.
 
-The higher-value segment showed a 20.98% response rate compared with 9.37% for the lower-value segment.
+Segment| Customers| Share| Avg. Income| Avg. Spending| Avg. Purchases| Response Rate
+Lower-Value Customers| 1,174| 52.6%| 36,530| 130.71| 6.58| 9.37%
+Higher-Value Customers| 1,058| 47.4%| 69,034| 1,132.60| 19.15| 20.98%
 
-This suggests that campaign targeting could benefit from prioritizing customers who already demonstrate stronger purchasing behavior.
+Key segmentation finding
 
-2. Recent activity is associated with higher response
+The Higher-Value Customers segment represents approximately 47.4% of customers, but contributes approximately 66.9% of all campaign responders.
 
-Responders had significantly lower recency values than non-responders.
+Its response rate is approximately 2.24× higher than the Lower-Value segment.
 
-This suggests that recent customer activity can be useful when building campaign targeting rules.
-
-3. Responders are more active across purchasing channels
-
-Responders generally had higher purchasing activity across:
-
-- Web
-- Catalog
-- Store
-
-The largest absolute difference was observed in catalog purchases.
-
-4. Wines and meat products stand out
-
-Responders spent more across all product categories, with wines and meat products showing the largest absolute spending differences.
-
-These categories could be considered when designing targeted offers or cross-selling strategies.
-
-5. Customer tenure matters
-
-Customers with longer relationships with the company showed higher campaign response rates.
-
-Customers with more than 1.5 years of tenure had a response rate of 26.48%, compared with 8.65% among customers with less than 6 months of tenure.
+«💡 Business implication: Higher-value customers represent a particularly important audience for targeted marketing campaigns.»
 
 ---
 
-Business Recommendations
+📅 Customer Recency
 
-Based on the analysis, I would recommend:
+Average recency differed noticeably between responders and non-responders.
 
-Prioritize higher-value customers
+Customer Group| Avg. Recency
+Non-Responders| 51.54 days
+Responders| 35.41 days
 
-Use behavioral segmentation to identify customers with stronger purchasing activity and prioritize them for targeted campaigns.
+Responders were associated with approximately 16 fewer days since their most recent purchase.
 
-Use recency as a targeting signal
-
-Customers with more recent activity may be more receptive to marketing campaigns, making recency a useful targeting feature.
-
-Personalize campaigns by behavior
-
-Different customers interact with the company through different channels. Campaign strategies should therefore consider observed purchasing behavior rather than treating all customers the same.
-
-Consider product preferences
-
-Wines and meat products showed particularly large spending differences between responders and non-responders, making them potential categories for targeted offers.
-
-Build different strategies for new and established customers
-
-Longer-tenure customers showed stronger campaign response, while newer customers may benefit from onboarding and engagement strategies.
-
-«These findings represent associations observed in the dataset and should not be interpreted as proof of causation.»
+«💡 Insight: More recently active customers appear more responsive to the campaign.»
 
 ---
 
-Power BI Dashboard
+⏳ Customer Tenure
 
-The final analysis was transformed into an interactive Power BI dashboard combining customer overview, campaign response, segmentation, purchasing behavior, product performance, education, and customer tenure.
+Customer tenure was also examined.
 
-The dashboard includes:
+Tenure Group| Response Rate
+Less than 6 months| 8.65%
+6–12 months| 9.38%
+1–1.5 years| 16.61%
+More than 1.5 years| 26.48%
 
-- Total Customers
-- Responders
-- Average Income
-- Average Spending
-- Average Purchases
-- Overall Response Rate
-- Response Rate by Customer Segment
-- Customer Distribution by Segment
-- Spending by Campaign Response
-- Product Spending by Response
-- Purchases by Channel and Response
-- Response Rate by Tenure
-- Response Rate by Education
+Longer-tenure customers showed higher campaign response rates in this dataset.
 
-The dashboard was designed to move from high-level KPIs → customer segmentation → behavioral analysis → actionable insights.
+«⚠️ These results indicate association, not causation.»
 
 ---
 
-Google Data Analytics Certificate Application
+🍷 Product Spending
 
-This project was also my practical application of the concepts covered throughout the Google Data Analytics Professional Certificate.
+Responders showed higher average spending across all major product categories.
 
-Course| Applied Concept
-Foundations: Data, Data, Everywhere| Analytics workflow and data mindset
-Ask Questions to Make Data-Driven Decisions| Business questions and stakeholder thinking
-Prepare Data for Exploration| Dataset understanding and preparation
-Process Data from Dirty to Clean| Data cleaning and quality checks
-Analyze Data to Answer Questions| EDA, statistics, and relationships
-Share Data Through the Art of Visualization| Power BI dashboard and storytelling
-Data Analysis with R Programming| Analytical programming concepts implemented with Python
-Introduction to Data Analysis| End-to-end analytical workflow
-Google Data Analytics Capstone| Complete project from problem to recommendations
+The largest absolute differences were observed in:
 
-The goal was not to force every technique from the certificate into one project, but to apply the relevant analytical concepts in a realistic workflow.
+- 🍷 Wines
+- 🥩 Meat Products
+
+These categories therefore represent potential opportunities for targeted offers and cross-selling.
 
 ---
 
-Project Files
+📊 Power BI Dashboard
+
+The final analysis was transformed into an interactive Power BI dashboard.
+
+The dashboard brings together:
+
+- Customer KPIs
+- Response Rate
+- Customer Segmentation
+- Customer Distribution
+- Spending by Response
+- Product Spending
+- Purchasing Channels
+- Response by Tenure
+- Response by Education
+
+Dashboard KPIs
+
+KPI| Value
+Total Customers| 2,233
+Responders| 332
+Average Income| 52.21K
+Average Spending| 605.38
+Average Purchases| 12.54
+Response Rate| 14.87%
+
+«📌 Dashboard file: "Marketing_Campaign_Performance_Analysis.pbix"»
+
+---
+
+💡 Key Insights
+
+01 — Higher-value customers matter more
+
+Higher-value customers represent less than half of the customer base but contribute roughly two-thirds of campaign responders.
+
+02 — Recent customers are more responsive
+
+Responders had an average recency of 35.41 days, compared with 51.54 days among non-responders.
+
+03 — Responders purchase more
+
+Responders averaged 15.36 purchases, compared with 12.05 among non-responders.
+
+04 — Responders spend considerably more
+
+Average spending among responders was 988.40, compared with 538.49 for non-responders.
+
+05 — Tenure is associated with response
+
+Customers with longer tenure showed substantially higher response rates.
+
+06 — Previous campaign engagement matters
+
+Customers who had accepted previous campaigns showed stronger responsiveness to the current campaign.
+
+---
+
+🎯 Business Recommendations
+
+Based on the analysis, a company could consider:
+
+1. Prioritize Higher-Value Customers
+
+Allocate greater targeting attention to customers with stronger spending and purchasing behavior.
+
+2. Use Recency for Targeting
+
+Recent customers may be valuable candidates for timely campaign communication and re-engagement strategies.
+
+3. Personalize Marketing Channels
+
+Use observed purchasing behavior to tailor communication and offers across web, catalog, and store channels.
+
+4. Focus on High-Value Product Categories
+
+Wines and Meat Products showed particularly strong spending differences between responders and non-responders.
+
+5. Build Different Strategies by Segment
+
+Instead of treating all customers equally:
+
+Higher-Value Customers → Retention + Cross-Sell + Targeted Offers
+
+Lower-Value Customers → Engagement + Activation + Conversion
+
+6. Strengthen Customer Lifecycle Strategies
+
+Newer customers may benefit from onboarding and engagement campaigns, while long-tenure customers may be suitable for loyalty-focused strategies.
+
+«⚠️ Recommendations are based on observed associations in the dataset and should be validated through controlled marketing experiments before assuming causal effects.»
+
+---
+
+📁 Project Structure
 
 marketing-campaign-performance-analysis/
 │
 ├── Marketing_Campaign_Performance_Analysis.ipynb
 ├── Marketing_Campaign_Performance_Analysis.pbix
-└── README.md
-
-Additional SQL and documentation files may be added as the project is further organized.
-
----
-
-Important Note
-
-This is a portfolio project based on a publicly available customer marketing dataset.
-
-The business scenario, questions, recommendations, and dashboard interpretation are part of the analytical exercise and do not represent analysis performed for the original dataset owner.
+├── README.md
+│
+└──
+    Additional SQL and project documentation
 
 ---
 
-What I Learned
+📚 Google Data Analytics Certificate Application
 
-The biggest lesson from this project was that data analysis is not mainly about knowing more tools.
+This project applies concepts covered throughout the Google Data Analytics Professional Certificate, including:
 
-The tools helped me execute the work, but the real challenge was deciding:
+Course| Applied Concept
+Foundations: Data, Data, Everywhere| Analytics workflow & role of a Data Analyst
+Ask Questions to Make Data-Driven Decisions| Business questions & stakeholder thinking
+Prepare Data for Exploration| Dataset understanding & preparation
+Process Data from Dirty to Clean| Data cleaning & quality checks
+Analyze Data to Answer Questions| EDA, statistics & insights
+Share Data Through the Art of Visualization| Dashboard & data storytelling
+Data Analysis with R Programming| Analytical concepts implemented in Python
+Introduction to Data Analysis| End-to-end analytical workflow
+Google Data Analytics Capstone| Complete portfolio project
 
-What question should I ask?
+Python instead of R
 
-What should I trust in the data?
+Although one course focuses on R programming, the analytical concepts were implemented using Python, Pandas, NumPy, and Scikit-learn because Python aligns with the technical direction of this portfolio.
 
-What should I clean or investigate?
+The goal was to apply the analytical thinking and concepts, not simply reproduce the course exercises in another language.
 
-What does the result actually mean for a business?
+---
 
-And what decision could be made from it?
+🧠 What I Learned
 
-That shift — from simply working with data to thinking with data — was the most valuable part of this project.
+This project helped strengthen practical skills in:
+
+- Translating business problems into analytical questions
+- Data cleaning and data-quality validation
+- Exploratory Data Analysis
+- Python with Pandas and NumPy
+- SQL business analysis
+- Customer segmentation with K-Means
+- Feature engineering
+- Statistical comparison
+- Data visualization
+- Power BI dashboard development
+- Turning analytical findings into business recommendations
+- Communicating insights without confusing correlation with causation
+
+Most importantly, the project reinforced one principle:
+
+«Data analysis is not just about finding numbers. It is about turning data into decisions.»
+
+---
+
+📂 Project Files
+
+📓 Python Analysis
+
+"Marketing_Campaign_Performance_Analysis.ipynb"
+
+Contains the complete Python workflow including:
+
+- Data loading
+- Data inspection
+- Cleaning
+- Feature engineering
+- EDA
+- Statistical analysis
+- Customer segmentation
+- Business insights
+
+📊 Power BI Dashboard
+
+"Marketing_Campaign_Performance_Analysis.pbix"
+
+Contains the interactive dashboard built from the cleaned analytical dataset.
+
+---
+
+⚠️ Project Note
+
+This is a portfolio project based on a public customer marketing dataset.
+
+The company/business scenario is fictional and is used only to demonstrate a realistic Data Analyst workflow.
+
+The findings represent patterns observed in the dataset and should not be interpreted as causal conclusions without further experimentation.
+
+---
+
+🚀 Future Improvements
+
+Potential next steps include:
+
+- Adding an interactive dashboard screenshot gallery
+- Extracting SQL queries into a dedicated ".sql" file
+- Adding automated analysis scripts
+- Building a predictive campaign-response model
+- Testing campaign strategies using A/B testing concepts
+- Adding customer lifetime value analysis
+- Deploying selected insights through an interactive web application
+
+---
+
+👨‍💻 Author
+
+Omar Saleh
+
+Computer Science Student | Data Analytics & Machine Learning
+
+---
+
+⭐ If you found this project useful, feel free to explore the notebook and Power BI dashboard.
